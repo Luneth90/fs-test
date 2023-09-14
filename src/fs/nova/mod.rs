@@ -1,6 +1,6 @@
+use crate::pedersen::{Params as PedersenParams, Pedersen};
 use ark_ec::CurveGroup;
 use ark_std::{One, Zero};
-use crate::pedersen::Params as PedersenParams;
 
 pub mod circuits;
 pub mod nifs;
@@ -47,6 +47,8 @@ impl<C: CurveGroup> Witness<C> {
         params: &PedersenParams<C>,
         x: Vec<C::ScalarField>,
     ) -> CommittedInstance<C> {
-        unimplemented!();
+        let cm_e = Pedersen::commit(&self.r_e, params, &self.e);
+        let cm_w = Pedersen::commit(&self.r_w, params, &self.w);
+        CommittedInstance { cm_e, u: C::ScalarField::one(), cm_w, x }
     }
 }

@@ -9,6 +9,7 @@ edition = "2021"
 ark-ec = "0.4.2"
 ark-ff = "0.4.2"
 ark-std = "0.4.0"
+ark-crypto-primitives = { version = "^0.4.0", default-features = false, features = ["r1cs", "sponge"] }
 thiserror = "1.0.48"
 
 [dev-dependencies]
