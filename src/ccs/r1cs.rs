@@ -67,6 +67,10 @@ pub fn vec_add_vec<F: PrimeField>(v1: &[F], v2: &[F]) -> Vec<F> {
     v1.iter().zip(v2.iter()).map(|(v1, v2)| *v1 + v2).collect()
 }
 
+pub fn vec_sub_vec<F: PrimeField>(v1: &[F], v2: &[F]) -> Vec<F> {
+    v1.iter().zip(v2.iter()).map(|(v1, v2)| *v1 - v2).collect()
+}
+
 pub struct R1CS<F: PrimeField> {
     //io length
     pub l: usize,
@@ -93,6 +97,7 @@ pub mod tests {
         // (z2 + x) * 1 = z3
         // (z3 + 5) * 1 = y
         // z = (1,x,y,z1,z2,z3)
+        // when x =3, z = (1,3,35,9,27,30)
         let a = dense_matrix_to_sparse(to_f_matrix::<F>(vec![
             vec![0, 1, 0, 0, 0, 0],
             vec![0, 0, 0, 1, 0, 0],
@@ -112,7 +117,7 @@ pub mod tests {
             vec![0, 0, 1, 0, 0, 0],
         ]));
 
-        R1CS::<F> { l: 2, a, b, c }
+        R1CS::<F> { l: 1, a, b, c }
     }
 
     //z = (1,x,w)
