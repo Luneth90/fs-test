@@ -26,6 +26,7 @@ impl<C: CurveGroup> CommittedInstance<C> {
 
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Witness<C: CurveGroup> {
+    // e is error matrix = F^m, m is r1cs row number
     pub e: Vec<C::ScalarField>,
     pub r_e: C::ScalarField,
     pub w: Vec<C::ScalarField>,

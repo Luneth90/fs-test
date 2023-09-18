@@ -56,7 +56,7 @@ pub fn vec_mul_matrix<F: PrimeField>(z: &[F], m: &SparseMatrix<F>) -> Vec<F> {
 }
 
 pub fn hadamard<F: PrimeField>(a: &[F], b: &[F]) -> Vec<F> {
-    a.iter().zip(b.iter()).map(|(v1, v2)| *v1 * v2).collect()
+    a.iter().zip(b).map(|(v1, v2)| *v1 * v2).collect()
 }
 
 pub fn scalar_mul_vec<F: PrimeField>(c: F, v: &[F]) -> Vec<F> {
@@ -64,7 +64,7 @@ pub fn scalar_mul_vec<F: PrimeField>(c: F, v: &[F]) -> Vec<F> {
 }
 
 pub fn vec_add_vec<F: PrimeField>(v1: &[F], v2: &[F]) -> Vec<F> {
-    v1.iter().zip(v2.iter()).map(|(v1, v2)| *v1 + v2).collect()
+    v1.iter().zip(v2).map(|(v1, v2)| *v1 + v2).collect()
 }
 
 pub fn vec_sub_vec<F: PrimeField>(v1: &[F], v2: &[F]) -> Vec<F> {
